@@ -22,7 +22,7 @@ static const CGFloat CalendarViewMonthTitleOffsetY  = 35;// 50
 //static const CGFloat CalendarViewMonthYStep         = 60;
 static const NSInteger CalendarViewMonthInLine      = 3;
 
-static const CGFloat CalendarViewYearCellWidth      = 54;
+//static const CGFloat CalendarViewYearCellWidth      = 54;
 //static const CGFloat CalendarViewYearCellHeight     = 30;
 static const CGFloat CalendarViewYearTitleOffsetY   = 40; //50
 //static const CGFloat CalendarViewYearYStep          = 45;
@@ -90,7 +90,7 @@ static const NSTimeInterval CalendarViewSwipeMonthFadeOutTime = 0.3;
 //    CGFloat CalendarViewMonthTitleOffsetY;// 50
     CGFloat CalendarViewMonthYStep;
     
-//    CGFloat CalendarViewYearCellWidth;
+    CGFloat CalendarViewYearCellWidth;
     CGFloat CalendarViewYearCellHeight;
 //    CGFloat CalendarViewYearTitleOffsetY; //50
     CGFloat CalendarViewYearYStep;
@@ -156,13 +156,15 @@ static const NSTimeInterval CalendarViewSwipeMonthFadeOutTime = 0.3;
 
 #pragma mark - Setup
 - (void)setupConstValues:(CGRect)frame {
+    
     CGFloat with = frame.size.width;
     CGFloat height = frame.size.height;
     
     
-    CalendarViewDayCellOffset = MIN(with*.03, height*.03); // 3% of with/height
-    CalendarViewDayCellWidth = (with-CalendarViewDayCellOffset*(CalendarViewDaysInWeek+3))/CalendarViewDaysInWeek;
-    CalendarViewDayCellHeight = (height-CalendarViewMonthTitleOffsetY)/CalendarViewDaysInWeek;
+//    CalendarViewDayCellOffset = MIN(with*.03, height*.03); // 3% of with/height
+    CalendarViewDayCellOffset = 0;
+    CalendarViewDayCellWidth = with/CalendarViewDaysInWeek;
+    CalendarViewDayCellHeight = (height-CalendarViewMonthTitleOffsetY)/6;
     
 //    CalendarViewMonthCellHeight = ((height-CalendarViewMonthTitleOffsetY)/(12/CalendarViewMonthInLine))*.9;
     NSInteger countMonthRows = 12/CalendarViewMonthInLine;
@@ -175,6 +177,7 @@ static const NSTimeInterval CalendarViewSwipeMonthFadeOutTime = 0.3;
     NSInteger countYearRows = (CalendarViewYearsAround*2+1)/CalendarViewYearsInLine;
     CalendarViewYearLabelWidth = CalendarViewDayFontSize*5; // 4 letters
     CalendarViewYearLabelHeight = CalendarViewDayFontSize*2;
+    CalendarViewYearCellWidth = with/countYearRows;
     CalendarViewYearCellHeight = CalendarViewDayFontSize*2;
     CalendarViewYearYStep = (height-CalendarViewMonthTitleOffsetY)/countYearRows;
     
